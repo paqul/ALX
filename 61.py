@@ -1,4 +1,4 @@
-#----------WYŚWIETLACZ LICZB NIEPARZYSTYCH!------------#
+#----------WYŚWIETLACZ LICZB NIEPARZYSTYCH!-----------#
 def zadanie(liczba):
     for x in range(1, liczba+1):
         if x % 2 != 0  and x != liczba-1:
