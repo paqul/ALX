@@ -1,10 +1,16 @@
-#---------------------------HOTEL---------------------------#
+from datetime import date as d
 
-def forumarz_rezerwacji(ile_dni, ile_osob, sniadanie, imie):
+#---------------------------HOTEL---------------------------#
+def exit_function():
+    print("Do zobaczenia!")
+    exit()
+
+def forumarz_rezerwacji(var1, var2, var3, var4, var5, var6, var7, var8, ile_dni, ile_osob, sniadanie, imie):
+    print("\n"*3)
     print("================================")
     print("|  FORMULARZ    REJESTRACYJNY  |")
     print("|------------------------------|")
-    print("| Data przybycia: (in progres) |")
+    print("| Data przybycia:  %i%i-%i%i-%i%i%i%i  |" % (var7, var8, var5, var6, var1, var2, var3, var4))
     print("| Ilość dni pobytu:       %3i  |" % ile_dni)
     print("| Ilość osób:             %3i  |" % ile_osob)
     print("| Śniadania w każdy dzień: %s |" % sniadanie)
@@ -13,13 +19,39 @@ def forumarz_rezerwacji(ile_dni, ile_osob, sniadanie, imie):
     print("|  ŻYCZYMY   MIŁEGO   POBYTU   |")
     print("|     W   NASZYM   HOTELU      |")
     print("================================")
+    exit_function()
 
 
 def termin_przybycia():
-    print("Podaj date przybycia do hotelu w formacie (rrrr-mm-dd) np. 2018-12-07\n")
-    data_przybycia=input("Data przybycia: %i %i %i %i - %i %i - %i %i")
-    print("Data przybycia zostala zarezerwowana na", data_przybycia)
-    print(type(data_przybycia))
+    print("Podaj date przybycia do hotelu w formacie (rrrr-mm-dd) np. 2018-12-07")
+    while True:
+        data_przybycia=input("Data przybycia: ")
+        tab = []
+        for var in data_przybycia:
+            try:
+                var = int(var)
+                tab.append(var)
+            except:
+                myslnik = var
+        if len(tab) == 8:
+            dzien = int(("%i" + "%i") % (tab[6], tab[7]))
+            miesiac = int(("%i" + "%i") % (tab[4], tab[5]))
+            if dzien > 31 or miesiac > 12:
+                print("Popełniłeś błąd przy wpisywaniu daty - proszę sprawź to i wpisz jeszcze raz poprawnie!")
+                termin_przybycia()
+            else:
+                try:
+                    if data_przybycia == ("%i%i%i%i-%i%i-%i%i"% (tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7])):
+                        if data_przybycia > str(d.today()):
+                            print("Podana data: %s - została zaakceptowana" % data_przybycia)
+                            return tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7]
+                        else:
+                            print("Podana data jest z przeszłości lub teraźniejszości, podaj ją jeszcze raz najbliższy możliwy termin rezerwacji to jutro!")
+                except IndexError:
+                    print("Podałeś datę przybycia w niewłaściwym formacie")
+        else:
+            print("Podales date w niewłaściwym formacie - spróboj jeszcze raz")
+
 
 
 def ilosc_dni():
@@ -29,6 +61,17 @@ def ilosc_dni():
             if ile_dni > 731:
                 print("Jeżeli chcesz zostać w hotelu powyżej dwóch lat to powinieneś to osobiście ustalić z włąścicielem bezpośrednio podczas pobytu")
                 print("Wpisz np 14 dni - przyjedź na 2 tygodnie i resztę swojego pobytu ustal z właścicielem")
+            elif ile_dni <= 0:
+                print("Dalsze wypełnianie formularza nie ma sensu, skoro nawet 1 dnia nie zostaniesz w hotelu")
+                while True:
+                    dec = input("Czy chcesz zacząc wypełniać formularz od początku: (t/n)")
+                    dec = dec.lower()
+                    if dec == "t":
+                        main()
+                    elif dec == "n":
+                        exit_function()
+                    else:
+                        print("Wpisałeś nie poprawnie")
             else:
                 return ile_dni
         except ValueError:
@@ -72,17 +115,17 @@ def imie_fun():
         print("Błąd! - Podaj imie bez cyfr oraz znaków innych niż litery w imieniu!")
         return imie_fun()
     else:
-        return imie_OK
+        return imie_OK.capitalize()
 
 
 def rezerwacja():
     print("Prosze o podanie natepujacych informacji w celu rezerwacji w naszym hotelu")
-    # termin_przybycia()
+    [var1, var2, var3, var4, var5, var6, var7, var8] = termin_przybycia()
     days = ilosc_dni()
     people = ilosc_osob()
     breakfest = sniadanie()
     name = imie_fun()
-    return forumarz_rezerwacji(days, people, breakfest, name)
+    return forumarz_rezerwacji(var1, var2, var3, var4, var5, var6, var7, var8, days, people, breakfest, name)
 
 
 def opishotelu():
@@ -90,8 +133,7 @@ def opishotelu():
     while True:
         decyzja=input("Czy napewno chcesz wyjsc z aplikacji? (t/n)")
         if decyzja == "t":
-            print("Do zobaczenia!")
-            exit()
+            exit_function()
         elif decyzja == "n":
             main()
         else:
@@ -110,6 +152,4 @@ def main():
             print("Wpisz \"t\" lub \"n\"", end="")
 
 
-# rezerwacja()
-# main()
-# termin_przybycia()
+main()
