@@ -33,6 +33,12 @@ class Student():
             else:
                 print("Wprowadzono NIEcyfry - jeszcze raz")
 
+    def modyfikuj(self):
+        self.imie = input("Imie studenta: ")
+        self.nazwisko = input("Nazwisko studenta: ")
+        self.nr_indeksu = self.walidacja_nr_ideksu()
+        self.grupa = self.walidacja_grupy()
+
 
     def dane(self):
         dane = "%10s| %10s| %15s| %4s\n" % (self.nr_indeksu, self.imie, self.nazwisko, self.grupa)
@@ -112,6 +118,23 @@ def zmien():
         print(wszystkie_dane[LP][11:22], wszystkie_dane[LP][23:39])
     wybrane = input("Podaj nazwisko ktore ma zostac edytowane: ")
     wybrane = ("%16s" % wybrane)
+    mod = False
+    for lp, tmp in enumerate(wszystkie_dane):
+        if wybrane == wszystkie_dane[lp][23:39]:
+            wszystkie_dane.pop(lp)
+            student = Student()
+            wszystkie_dane.append(student.dane())
+            mod = True
+            print("Zmodyfikowano status studenta")
+    if LP == lp and mod != True:
+        print("Podane nazwisko nie istnieje w bazie")
+    pamiec_pliku = open("plik.txt", "w")
+    for line in wszystkie_dane:
+        pamiec_pliku.write(line)
+    pamiec_pliku.close()
+    print("Nr indeksu|    Imie:  |    Nazwisko:   | Grupa:")
+    for tmp in wszystkie_dane:
+        print(tmp, end="")
 
 
 def main():
@@ -125,7 +148,7 @@ def main():
             pokaz()
         elif decyzja == "S": #OK
             szukaj()
-        elif decyzja == "Z": #to do
+        elif decyzja == "Z": #OK
             zmien()
         elif decyzja == "Q": #OK
             exit()
