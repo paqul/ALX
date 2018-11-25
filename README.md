@@ -13,5 +13,4 @@ II. Second part
 5. 85.py        - Exercise: Student's list
 6. exercise82   - Exercise: (OOP) Course Manager 
 a. |--------- engine82.py - collection of all classes in this exercise
-b. |--------- 82.py       - this is just a "RunFILE" to exercise 82 
-
+b. |--------- 82.py       - this is just a "RunFILE" to exercise 82
