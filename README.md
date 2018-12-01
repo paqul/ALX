@@ -13,4 +13,5 @@ II. Second part
 5. 85.py        - Exercise: Student's list
 6. exercise82   - Exercise: (OOP) Course Manager (engine82.py - collection of all classes in this exercise, 82.py - this is just a "RunFILE" to exercise 82)
 7. 77.py        - Exercise: Very simple calculator using a tkinter package
-8. 76.py        - Exercise: Simple application to reserve flight ticket
+8. 76.py        - Exercise: Simple application to reserve flight ticket using a tkinter package
+9. 78.py        - Exercise: This is simple game "The hangman" using a tkinter package
