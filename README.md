@@ -15,3 +15,4 @@ II. Second part
 7. 77.py        - Exercise: Very simple calculator using a tkinter package
 8. 76.py        - Exercise: Simple application to reserve flight ticket using a tkinter package
 9. exercise78   - Exercise: This is simple game "The hangman" using a tkinter package (78.py - runscript, "wisielec_0.png to  wisielec_6.png" just a graphic files
+10. 86.py       - Exercise: This exercise connect simple file operations with .dat extend to write to and read from simple data base (using OOP technology)
